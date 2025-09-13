@@ -1,0 +1,37 @@
+# Task ID: 8
+# Title: Implement Frontend Status Polling and Display
+# Status: pending
+# Dependencies: 4, 6
+# Priority: medium
+# Description: Write JavaScript to periodically fetch the gate's status from the backend and update the status display on the webpage.
+# Details:
+In `app.js`, use `setInterval()` to call a function every few seconds (e.g., 3-5 seconds). This function will use `fetch()` to make a GET request to the `/api/status` endpoint. Upon receiving a successful response, it will update the `innerText` of the `#status-display` element with the new status.
+
+# Test Strategy:
+Load the webpage and observe the status display. Manually operate the gate (using the buttons on the page) and verify that the status text updates accordingly within a few seconds to reflect 'Opening', 'Closing', 'Open', or 'Closed'.
+
+# Subtasks:
+## 1. Implement Polling Logic with setInterval [pending]
+### Dependencies: None
+### Description: Set up a polling mechanism in app.js using setInterval to repeatedly trigger a function every 3-5 seconds.
+### Details:
+Create a function that will be called at regular intervals using setInterval. Ensure the interval is configurable (e.g., 3000-5000 ms) and that the polling can be stopped if needed.
+
+## 2. Fetch Gate Status from Backend Endpoint [pending]
+### Dependencies: 8.1
+### Description: Within the polling function, use fetch() to make a GET request to the /api/status endpoint and handle the response.
+### Details:
+Implement error handling for network failures and non-200 responses. Parse the JSON response to extract the gate status value.
+
+## 3. Update Status Display Element [pending]
+### Dependencies: 8.2
+### Description: Update the innerText of the #status-display DOM element with the latest status received from the backend.
+### Details:
+Select the #status-display element and set its innerText to the status value from the API response. Optionally, handle UI states for loading or errors.
+
+## 4. Test Real-Time Status Updates with Manual Gate Operation [pending]
+### Dependencies: 8.3
+### Description: Manually operate the gate and verify that the status display updates in near real-time on the webpage.
+### Details:
+Open the webpage, perform gate operations using the control buttons, and observe the status display. Confirm that it reflects changes (e.g., 'Opening', 'Closing', 'Open', 'Closed') within a few seconds.
+

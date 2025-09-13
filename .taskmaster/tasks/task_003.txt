@@ -1,0 +1,49 @@
+# Task ID: 3
+# Title: Develop Tuya API Authentication and Connection Service
+# Status: done
+# Dependencies: 2
+# Priority: high
+# Description: Establish a connection to the Tuya IoT Platform API. This task involves using the configured credentials to authenticate and create an API client instance that can be used for subsequent requests.
+# Details:
+Install a suitable Tuya API client library, such as `@tuyapi/cloud`. Create a service module (e.g., `tuyaService.js`) that initializes the TuyaCloud object with the credentials from the configuration module. Implement a function to handle the authentication flow and token management as required by the Tuya API. This service should expose methods for interacting with the device.
+
+# Test Strategy:
+Create a test script that attempts to initialize the Tuya service. A successful test is one where the API client authenticates without throwing an error. Log the successful authentication response or token.
+
+# Subtasks:
+## 1. Research and Select Tuya API Client Library [done]
+### Dependencies: None
+### Description: Evaluate available Node.js libraries for interacting with the Tuya IoT Platform API. Select the most suitable library based on documentation, community support, and features.
+### Details:
+Investigate libraries like `@tuyapi/cloud` and others. The goal is to find a well-maintained library that simplifies the authentication process and device control. The selection should be documented for future reference.
+
+## 2. Install and Configure Selected API Client Library [done]
+### Dependencies: 3.1
+### Description: Add the chosen Tuya API client library to the project's dependencies and perform any initial setup required by the library.
+### Details:
+Run `npm install <selected-library-name>` (e.g., `npm install @tuyapi/cloud`). Review the library's documentation for any required initial configuration steps beyond credential management.
+
+## 3. Implement Service Module for Authentication and Token Management [done]
+### Dependencies: 3.2
+### Description: Create a dedicated service module (e.g., `tuyaService.js`) to encapsulate the logic for connecting to the Tuya API, handling the authentication flow, and managing access tokens.
+### Details:
+This module will initialize the API client. It should include a primary function to authenticate with the Tuya cloud, which will handle obtaining and refreshing tokens as needed. The module should manage the API client instance internally.
+
+## 4. Integrate Configuration Module for API Credentials [done]
+### Dependencies: 3.3
+### Description: Connect the `tuyaService.js` module with the configuration management system (from Task 2) to securely retrieve the necessary API credentials.
+### Details:
+Import the configuration module that loads credentials from the `.env` file. Pass the Access ID, Access Key, and other required credentials to the Tuya API client's initialization function within the `tuyaService.js` module. Ensure no hardcoded secrets are used.
+
+## 5. Expose Device Interaction Methods from the Service Module [done]
+### Dependencies: 3.4
+### Description: Abstract the library-specific device control functions into simpler, reusable methods within the `tuyaService.js` module.
+### Details:
+Create and export functions from `tuyaService.js` such as `getDeviceStatus()` and `sendDeviceCommand()`. These methods will use the authenticated API client instance to make calls to the Tuya API for a specific device, creating a clean interface for the rest of the application.
+
+## 6. Write and Run Authentication Test Script [done]
+### Dependencies: 3.5
+### Description: Create a standalone script to test the Tuya API connection and authentication service to ensure it can successfully connect and authenticate.
+### Details:
+Create a new file (e.g., `testTuyaConnection.js`) that imports and calls the initialization/authentication function from `tuyaService.js`. The script should log a success message and the received token upon successful authentication, or log a detailed error message on failure.
+

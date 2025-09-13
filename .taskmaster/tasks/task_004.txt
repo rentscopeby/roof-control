@@ -1,0 +1,37 @@
+# Task ID: 4
+# Title: Create Backend Endpoint to Get Gate Status
+# Status: done
+# Dependencies: 3
+# Priority: medium
+# Description: Implement a backend API endpoint that the frontend can call to retrieve the current status of the gate opener (e.g., 'Open', 'Closed', 'Opening').
+# Details:
+In `server.js`, create a GET endpoint, for example, `/api/status`. This endpoint will use the `tuyaService` to call the Tuya API function for getting device properties/status. The endpoint should parse the response from Tuya to find the relevant status data point (e.g., `doorcontact_state` or a similar DP) and return it as a JSON object, like `{"status": "Closed"}`.
+
+# Test Strategy:
+Use a tool like Postman or `curl` to send a GET request to the `/api/status` endpoint. Verify that it returns a 200 OK status and a JSON payload containing the correct current status of the physical gate.
+
+# Subtasks:
+## 1. Define GET /api/status Route in Express [done]
+### Dependencies: None
+### Description: Set up a new GET endpoint '/api/status' in the Express application within server.js to handle incoming requests for the gate status.
+### Details:
+Use Express's routing methods to define the endpoint. Ensure the route is reachable and returns a placeholder JSON response initially for testing.
+
+## 2. Integrate tuyaService to Fetch Device Status [done]
+### Dependencies: 4.1
+### Description: Connect the GET /api/status route to the tuyaService, invoking the appropriate method to retrieve the current status of the gate device from the Tuya API.
+### Details:
+Import tuyaService and call its function to fetch device properties/status. Handle asynchronous calls and potential errors from the Tuya API.
+
+## 3. Parse and Format Tuya API Response as JSON [done]
+### Dependencies: 4.2
+### Description: Extract the relevant status datapoint (e.g., 'doorcontact_state') from the Tuya API response and format it as a JSON object to return to the client.
+### Details:
+Identify the correct datapoint in the Tuya response, map it to a user-friendly status string (e.g., 'Open', 'Closed', 'Opening'), and structure the response as {"status": "Closed"}. Implement error handling for missing or unexpected data.
+
+## 4. Implement and Document Endpoint Test Using Postman or curl [done]
+### Dependencies: 4.3
+### Description: Test the /api/status endpoint using Postman or curl to verify correct functionality and document the testing process.
+### Details:
+Send a GET request to /api/status, check for a 200 OK response and correct JSON payload. Document the test steps and expected results for future reference.
+

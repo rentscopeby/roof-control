@@ -1,0 +1,43 @@
+# Task ID: 2
+# Title: Implement Configuration Management for Tuya API Credentials
+# Status: done
+# Dependencies: 1
+# Priority: high
+# Description: Create a secure method for storing and accessing the user's Tuya IoT Platform API credentials (Access ID, Access Key, Device ID, etc.). This will keep sensitive information out of the source code.
+# Details:
+Use the `dotenv` library (`npm install dotenv`). Create a `.env` file in the project root to store the Tuya credentials (e.g., `TUYA_ACCESS_ID`, `TUYA_ACCESS_KEY`, `TUYA_DEVICE_ID`). Create a `.gitignore` file and add `.env` to it to prevent credentials from being committed to version control. Load these variables into the application's environment using `require('dotenv').config()`. Create a configuration module to export these values for use in the application.
+
+# Test Strategy:
+Add `console.log` statements in the server startup script to print the environment variables. Verify that the values from the `.env` file are loaded correctly and are not `undefined`.
+
+# Subtasks:
+## 1. Install and Configure `dotenv` Library [done]
+### Dependencies: None
+### Description: Add the `dotenv` package to the project's dependencies to enable loading environment variables from a `.env` file.
+### Details:
+Run `npm install dotenv` in the project's root directory. This will add the library to `package.json` and `node_modules`.
+
+## 2. Create and Document `.env` File [done]
+### Dependencies: 2.1
+### Description: Create the `.env` file to store the actual Tuya API credentials and a template file to document the required variables for other developers.
+### Details:
+Create a file named `.env` in the project root. Add the necessary key-value pairs: `TUYA_ACCESS_ID=your_access_id`, `TUYA_ACCESS_KEY=your_access_key`, `TUYA_DEVICE_ID=your_device_id`. Also, create a `.env.example` file with the same keys but with placeholder values.
+
+## 3. Add `.env` to `.gitignore` [done]
+### Dependencies: 2.2
+### Description: Ensure the `.env` file containing sensitive credentials is not committed to the version control system (Git).
+### Details:
+Create or open the `.gitignore` file in the project root. Add a new line containing `.env` to instruct Git to ignore this file during commits.
+
+## 4. Implement Configuration Module [done]
+### Dependencies: 2.1, 2.2
+### Description: Create a centralized module to load the environment variables using `dotenv` and export them for easy and consistent access throughout the application.
+### Details:
+In the main application entry point (e.g., `server.js`), add `require('dotenv').config()` at the very top. Create a new file (e.g., `config/index.js`) that reads the variables from `process.env` and exports them in a structured object for other modules to import.
+
+## 5. Validate and Test Environment Variable Loading [done]
+### Dependencies: 2.4
+### Description: Verify that the application correctly loads the credentials from the `.env` file upon startup and fails gracefully if they are missing.
+### Details:
+In the main server startup script, after loading the configuration, add `console.log` statements to print the imported Tuya credentials. Run the application and check the console output to ensure the values are not `undefined`. Implement a check that throws an error and exits the process if any required environment variable is missing.
+

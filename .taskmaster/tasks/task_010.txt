@@ -1,0 +1,43 @@
+# Task ID: 10
+# Title: Create User Documentation (README.md)
+# Status: pending
+# Dependencies: 1, 2
+# Priority: medium
+# Description: Write a comprehensive README.md file that guides a user through the entire setup process, from creating a Tuya developer account to running the local web server.
+# Details:
+The README should include sections on: 1. Prerequisites (Node.js). 2. How to get Tuya API credentials (with links to Tuya IoT Platform). 3. Installation steps (`npm install`). 4. Configuration (how to create and fill the `.env` file). 5. How to run the application (`node server.js`). 6. How to use the web interface.
+
+# Test Strategy:
+Ask a non-developer to follow the instructions in the README.md file from start to finish. They should be able to successfully set up and run the application without needing additional help. The documentation should be clear and complete.
+
+# Subtasks:
+## 1. Draft Prerequisites and Setup Instructions [pending]
+### Dependencies: None
+### Description: Write the section of the README.md that lists all prerequisites (such as Node.js version requirements) and provides instructions for initial setup, including installing Node.js if necessary.
+### Details:
+Include clear instructions for verifying Node.js installation and any other required tools. Provide links to official download pages where appropriate.
+
+## 2. Document Tuya Developer Account and API Credential Acquisition [pending]
+### Dependencies: 10.1
+### Description: Create a detailed guide for users to register a Tuya developer account, create a cloud project, and obtain the necessary API credentials (Access ID, Access Key, Device ID).
+### Details:
+Include step-by-step instructions with references to the Tuya IoT Platform, screenshots or video links if helpful, and troubleshooting tips for common issues.
+
+## 3. Write Installation and Configuration Steps [pending]
+### Dependencies: 10.2
+### Description: Document the process for installing project dependencies using npm and configuring the application, including creating and populating the .env file with Tuya credentials.
+### Details:
+Provide exact commands (e.g., `npm install`), explain the purpose of the .env file, and include a template or example .env section. Remind users to keep credentials secure.
+
+## 4. Add Usage Instructions for Running and Using the Application [pending]
+### Dependencies: 10.3
+### Description: Write clear instructions for starting the local web server and using the web interface, including how to access the application in a browser and basic usage scenarios.
+### Details:
+Include commands for running the server (e.g., `node server.js`), expected output, and a walkthrough of the web interface features.
+
+## 5. Review and Test Documentation with a Non-Developer [pending]
+### Dependencies: 10.4
+### Description: Have a non-developer follow the README.md from start to finish to validate clarity and completeness, then revise documentation based on their feedback.
+### Details:
+Collect feedback on any confusing steps or missing information, and update the README.md to address these issues.
+

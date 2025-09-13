@@ -1,0 +1,56 @@
+How are Tuya Devices controllable via Wi-Fi module TY-WFH - Slide Garage Door openers are being controlled - what commands do they accept to open and close the door? particularly DP ID or anything else
+
+Tuya-enabled Slide Garage Door openers controlled via the TY-WFH Wi-Fi module operate using data points (DPs) that represent device functions like opening and closing the door. The core commands use specific DP IDs:
+
+- DP 1: Action trigger for opening/closing the door. Setting DP 1 to true sends the command to open, while false sends the command to close the door[1][2].
+- DP 101: Status report on whether the door is open (true) or closed (false). This provides feedback so automations or UI can reflect the real state[1][2].
+- Additional DPs: Some devices may have others for stop, lock, countdown, or advanced status (e.g. DP 7 always 0 in certain models)[1][2][3].
+
+These DPs are accessed over serial (MCU integration) or through Tuya's cloud/app API, and commands for open/close are sent and received in the form of JSON, e.g. {"1":true} to open and {"1":false} to close[2][3].
+
+### Relevant DP Commands
+
+- Open Door: Send command { "1": true } to DP 1[2][3].
+- Close Door: Send command { "1": false } to DP 1[2][3].
+- Status/Feedback: Read DP 101 (if true, the door is open; if false, closed)[1][2].
+- Some implementations also use additional DP IDs for more features, such as DP 102 for the timer and DP 103 for advanced state[2].
+
+### Example Device DP Schema
+
+| DP ID | Function        | Action/Value      |
+|-------|----------------|-------------------|
+| 1     | Open/Close     | true/false [1][2][3] |
+| 7     | Constant?      | Always 0 [1]             |
+| 101   | Door Status    | true (open) / false (closed) [1][2] |
+| 102   | Timer (secs)   | Door open/close duration [2]        |
+| 103   | Advanced state | Context-specific [2]        |
+
+### Control Methods
+
+- Via Tuya app/cloud API by sending the relevant DP command[4][3].
+- Over serial interface using Tuya’s MCU protocol where the module relays DP commands[5][6][7].
+- Integration with automation platforms (Home Assistant, Homebridge, etc.) is accomplished by mapping these DPs as switches or binary sensors[1][2][3].
+
+DP 1 is the principal method for triggering open/close on the door, while DP 101 reports back the actual door status—these are the key commands to operate Tuya Wi-Fi garage door openers using the TY-WFH module[1][2][3].
+
+Цитаты:
+[1] Tuya Garage Door Opener with sensors - Page 3 - Hardware https://community.home-assistant.io/t/tuya-garage-door-opener-with-sensors/236026?page=3
+[2] Garage Door Opener Opening and Closing state #70 https://github.com/iRayanKhan/homebridge-tuya/issues/70
+[3] Request support for <TY-WFH V3.01 Tuya Wi-Fi Sliding ... https://github.com/make-all/tuya-local/issues/2173
+[4] Device DPs https://developer.tuya.com/en/docs/iot/device-function-point?id=Ka6y8bi672n1s
+[5] Guide to Interworking with the Tuya MCU https://images.tuyacn.com/smart/aircondition/Guide-to-Interworking-with-the-Tuya-MCU.pdf
+[6] Serial Communication Protocol https://developer.tuya.com/en/docs/iot/tuya-cloud-universal-serial-port-access-protocol?id=K9hhi0xxtn9cb
+[7] Basic Features-MCU Standard Protocol ... https://developer.tuya.com/docs/mcu-standard-protocol/MCUSDK-wifi-base?id=Kd2bxu84567gk
+[8] Wi-Fi Solution https://developer.tuya.com/en/docs/iot/wifi-mcu-overview?id=K9hhi0xprxmpw
+[9] Wi-Fi SDK Guide-TuyaOS-Tuya Developer https://developer.tuya.com/en/docs/iot-device-dev/tuya-common-wifi-sdk?id=K9glcmvw4u9ml
+[10] Tuya WSTS Touch Smart WiFi Switch User Guide https://manuals.plus/tuya/wsts-touch-smart-wifi-switch-manual
+[11] Best way to configure WiFi Tuya sensors? https://community.home-assistant.io/t/best-way-to-configure-wifi-tuya-sensors/742677
+[12] DP Model and Control Protocol https://developer.tuya.com/en/docs/iot-device-dev/TuyaOS-iot_abi_dp_ctrl?id=Kcoglhn5r7ajr
+[13] Step 1: Add device https://smartapp.tuya.com/tuyasmart/help
+[14] Tuya Smart Access Control Pairing to Wifi https://www.youtube.com/watch?v=veb0hkCutb4
+[15] Connect sliding door opener to tuya app & remote control ... https://www.youtube.com/watch?v=0PUSECuwV3U
+[16] TYWE1S Module Datasheet https://developer.tuya.com/en/docs/iot/wifie1smodule?id=K9605thnvg3e7
+[17] Instruction Set: ckmkzq https://developer.tuya.com/en/docs/iot/f?id=K9gf7o1tn42df
+[18] Access Control DP Reference https://developer.tuya.com/en/docs/iot/datapoint-reference?id=Kadhd28uy4rvp
+[19] Tuya Smart Life WiFi Garage Door Controller Opener with ... https://www.loratap.com/products/tuya-smart-life-wifi-garage-door-controller-opener-with-remote-works-with-voice-control-alexa-echo-google-home-180
+[20] Tuya Smart WiFi Garage Door Sliding Gate Opener ... https://www.aliexpress.com/item/1005009092297756.htmlp

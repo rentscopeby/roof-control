@@ -1,0 +1,37 @@
+# Task ID: 6
+# Title: Develop Basic Frontend HTML Structure
+# Status: pending
+# Dependencies: 1
+# Priority: medium
+# Description: Create the main HTML file for the user interface. This file will contain the essential elements: three control buttons and a text area for displaying the gate's status.
+# Details:
+Create an `index.html` file inside the 'public' directory. Add three `<button>` elements with IDs like `open-btn`, `close-btn`, and `stop-btn`. Add a `<div>` or `<span>` element with an ID like `status-display` to show the gate status. Link a CSS file and a JavaScript file to this HTML.
+
+# Test Strategy:
+Open the `index.html` file directly in a browser or via the running Express server. Verify that the three buttons and a placeholder for the status text are visible on the page.
+
+# Subtasks:
+## 1. Create index.html in public directory [pending]
+### Dependencies: None
+### Description: Generate a new HTML file named 'index.html' inside the 'public' directory to serve as the main entry point for the frontend user interface.
+### Details:
+Ensure the file is saved with the .html extension and is located in the correct directory for static serving. Include the basic HTML5 document structure: <!DOCTYPE html>, <html>, <head>, and <body> tags.
+
+## 2. Add three control button elements with appropriate IDs [pending]
+### Dependencies: 6.1
+### Description: Insert three <button> elements into the <body> of index.html, each with a unique ID: 'open-btn', 'close-btn', and 'stop-btn'.
+### Details:
+Place the buttons in a logical order for user interaction. Use clear text labels for each button to indicate their function.
+
+## 3. Add status display element [pending]
+### Dependencies: 6.1
+### Description: Add a <div> or <span> element with the ID 'status-display' to index.html for displaying the gate's current status.
+### Details:
+Position the status display element near the control buttons for visibility. Ensure it is empty or contains placeholder text initially.
+
+## 4. Link CSS and JavaScript files to HTML [pending]
+### Dependencies: 6.1
+### Description: Include <link> and <script> tags in the <head> or end of <body> of index.html to connect the CSS and JavaScript files required for styling and interactivity.
+### Details:
+Reference the correct file paths for the CSS and JavaScript files (e.g., 'style.css' and 'app.js'). Verify that both files are loaded when the HTML page is opened in a browser.
+

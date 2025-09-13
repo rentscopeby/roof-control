@@ -1,0 +1,55 @@
+# Task ID: 5
+# Title: Create Backend Endpoints for Gate Control (Open, Close, Stop)
+# Status: pending
+# Dependencies: 3
+# Priority: high
+# Description: Implement three separate backend API endpoints to send 'open', 'close', and 'stop' commands to the gate opener via the Tuya API.
+# Details:
+Create three POST endpoints: `/api/control/open`, `/api/control/close`, and `/api/control/stop`. Each endpoint will call a method in the `tuyaService` to send a specific command to the device. The command will likely involve setting a specific Data Point (DP) to a certain value (e.g., setting DP `control` to `open`). The exact DP ID and values must be identified using the Tuya IoT Platform's debugging tools.
+
+# Test Strategy:
+Use Postman or `curl` to send POST requests to each of the three endpoints. After each request, physically observe the gate to confirm it performs the correct action (opens, closes, or stops). Check the API response for a success status.
+
+# Subtasks:
+## 1. Define POST Endpoints for Gate Control [done]
+### Dependencies: None
+### Description: Create three POST endpoints: `/api/control/open`, `/api/control/close`, and `/api/control/stop` in the backend server to handle gate control commands.
+### Details:
+Set up the route handlers in the backend framework (e.g., Express.js) for each endpoint. Ensure each endpoint receives requests and passes control to the appropriate service method.
+
+## 2. Implement Command Dispatch Logic in tuyaService [done]
+### Dependencies: 5.1
+### Description: Develop methods in the `tuyaService` to send 'open', 'close', and 'stop' commands to the gate opener using the Tuya API.
+### Details:
+For each command, implement logic to construct and send the correct API request to Tuya, mapping the endpoint action to the corresponding Tuya API call and payload.
+
+## 3. Identify and Document Correct DP IDs and Values [done]
+### Dependencies: 5.2
+### Description: Use Tuya IoT Platform debugging tools to determine the correct Data Point (DP) IDs and values for 'open', 'close', and 'stop' commands.
+### Details:
+Access the Tuya IoT Platform, inspect the device's available DPs, and document the required DP IDs and values for each control action. Update the service logic to use these values.
+
+## 4. Handle and Log Errors [done]
+### Dependencies: 5.2, 5.3
+### Description: Implement robust error handling and logging for all gate control endpoints and Tuya API interactions.
+### Details:
+Ensure that all failures (e.g., network errors, invalid DP values, Tuya API errors) are caught, logged with sufficient detail, and returned to the client with meaningful error messages.
+
+## 5. Test Each Endpoint with Postman/curl and Physical Device [pending]
+### Dependencies: 5.1, 5.2, 5.3, 5.4
+### Description: Verify the functionality of each endpoint by sending POST requests and observing the physical gate's response.
+### Details:
+Use Postman or curl to send requests to `/api/control/open`, `/api/control/close`, and `/api/control/stop`. Confirm that the gate performs the correct action and that the API responses are accurate.
+
+## 6. Research Tuya documentation for 'ckmkzq' (Garage Door Opener) category to find correct DP commands and control patterns for open, close, and stop actions. Look for enum-based control DPs or specific trigger mechanisms. [pending]
+### Dependencies: None
+### Description: 
+### Details:
+
+
+## 7. Research Tuya documentation for 'ckmkzq' (Garage Door Opener) category to find correct DP commands and control patterns for open, close, and stop actions. Look for enum-based control DPs or specific trigger mechanisms. [pending]
+### Dependencies: None
+### Description: 
+### Details:
+
+
